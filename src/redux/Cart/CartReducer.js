@@ -1,5 +1,5 @@
 import CartActionTypes from "./CartTypes"
-import { AddItemToCart } from "./CartUtils"
+import { AddItemToCart, RemoveItemsFromCart } from "./CartUtils"
 
 
 const INITIAL_STATE ={
@@ -23,6 +23,18 @@ switch(action.type){
                 ...state,
                 CartItems: AddItemToCart(state.CartItems, action.payload)
             }
+    case CartActionTypes.CLEAR_ITEM_FROM_CART:
+        return{
+    
+                ...state,
+                CartItems: state.CartItems.filter(cartItem => cartItem.id !== action.payload.id)
+            }
+
+    case CartActionTypes.REMOVE_ITEM:
+         return{
+                     ...state,
+                 CartItems: RemoveItemsFromCart(state.CartItems, action.payload)
+                    }
         default:
             return state
 }

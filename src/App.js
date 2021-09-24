@@ -10,6 +10,9 @@ import { auth, createUserProfileDocument } from './FireBase/Firebase-util';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import {setCurrentUser} from './redux/User/UserAction'
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/User/UserSelector';
+import CheckOut from './pages/CheckOut/CheckOut';
 
 
 class  App extends Component {
@@ -53,6 +56,7 @@ class  App extends Component {
       <Route exact path="/" component={Homepage}/>
         <Route  exact path="/Shop" component={Shop}/>
         <Route  exact path="/Signin" render={() => this.props.currentUser ? <Redirect to="/"/> : <SignInAndSignUp/>}/>
+        <Route exact path="/CheckOut" component={CheckOut}/>
       </Switch>
       
       </div>
@@ -66,8 +70,9 @@ class  App extends Component {
  
 }
 
-const mapStateToProps = ({user}) =>({
-  currentUser: user.currentUser
+const mapStateToProps =  createStructuredSelector({
+  currentUser: selectCurrentUser,
+  
 })
 
 const mapDispatchToProps = dispatch => ({
