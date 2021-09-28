@@ -15,6 +15,7 @@ import { selectCurrentUser } from './redux/User/UserSelector';
 import CheckOut from './pages/CheckOut/CheckOut';
 
 
+
 class  App extends Component {
 
 
@@ -24,7 +25,7 @@ class  App extends Component {
 
     const {setCurrentUser} = this.props
 
-    console.log("testing app",setCurrentUser)
+
 
    this.unsubscribeFromAuth =  onAuthStateChanged(auth, async user=>
       {
@@ -54,9 +55,11 @@ class  App extends Component {
       <Header/>
       <Switch>
       <Route exact path="/" component={Homepage}/>
-        <Route  exact path="/Shop" component={Shop}/>
+        <Route  path='/Shop' component={Shop}/>
         <Route  exact path="/Signin" render={() => this.props.currentUser ? <Redirect to="/"/> : <SignInAndSignUp/>}/>
-        <Route exact path="/CheckOut" component={CheckOut}/>
+        <Route exact path="/CheckOut" render={() => this.props.currentUser ? <CheckOut/> : <Redirect to="/"/>}/>
+      
+      
       </Switch>
       
       </div>

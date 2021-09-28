@@ -16,6 +16,8 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+
+    
     &:hover {
       background-color: white;
       color: black;
@@ -37,6 +39,18 @@
     color: black;
     border: 1px solid black;
 
+    &:hover{
+
+      background-color: black;
+      color: white;
+      border: none;
+    }
+  }
+  &.loggedin {
+    background-color: rgb(245, 135, 135);
+    color: black;
+    border: 1px solid black;
+ 
     &:hover{
 
       background-color: black;
