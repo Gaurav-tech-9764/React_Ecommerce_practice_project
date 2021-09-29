@@ -10,7 +10,7 @@ console.log("inpre",match)
 return(
 
 <div className="collection-preview">
-    <h1 className="title" onClick={() => history.push(`${match.path}/${routeName}`)}>{title.toUpperCase()}</h1>
+    <h1 className="title" title="Click For More" onClick={() => history.push(`${match.path}/${routeName}`)}>{title.toUpperCase()}</h1>
         <div className="preview">
         {
             items.filter((item , idx)=> idx <4 ).map(item=> (
