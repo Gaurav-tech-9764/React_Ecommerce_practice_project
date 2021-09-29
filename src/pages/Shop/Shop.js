@@ -7,7 +7,6 @@ import CollectionPage from "../Collection/CollectionPage"
 
 const Shop = ({ match }) => {
 
-    console.log("in shop",match.path)
     return(
 
     <div className='shop-page'>

@@ -6,7 +6,7 @@ import "./PreviewCollection.Styles.scss";
 
 
 const PreviewCollection = ({title, items, history, match, routeName}) => {
-console.log("inpre",match)
+
 return(
 
 <div className="collection-preview">

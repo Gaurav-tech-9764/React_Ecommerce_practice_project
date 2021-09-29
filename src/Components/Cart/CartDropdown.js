@@ -10,7 +10,7 @@ import { toggleCartHidden } from "../../redux/Cart/CartAction";
 
 
 const CartDropdown = ({CartItems , history, dispatch}) =>{
-  console.log("tesing in dropdown")
+
 
     return(
         <div className="cart-dropdwon">

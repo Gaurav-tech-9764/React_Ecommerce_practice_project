@@ -26,7 +26,7 @@ class SignIn extends Component {
     }
 
     handelSubmit = async event =>{
-        console.log(this.props);
+     
         event.preventDefault();
         const {email, password} = this.state;
         try{

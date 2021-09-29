@@ -13,7 +13,7 @@ import { selectCartHidden } from "../../redux/Cart/CartSelector";
 
 
 const Header = ({currentUser, hidden}) => {
-console.log("testing",currentUser)
+
 return(
     <div className="header">
 

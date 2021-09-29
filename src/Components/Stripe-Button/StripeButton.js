@@ -8,7 +8,7 @@ const StripeCheckoutButton = ({price}) => {
    const publiShableKey= "pk_test_51JednVSDPjfxnBHVCcgIUPBJy0QNaLVRbRmNgmU7fRUVv1maEgueJ89YbkQZWlOVJNkDK9qVU21wT2FwncM5iPfI00CIQMSJZg"
 
    const onToken=token=>{
-       console.log(token)
+       
        alert("payment Success")
 
    }
