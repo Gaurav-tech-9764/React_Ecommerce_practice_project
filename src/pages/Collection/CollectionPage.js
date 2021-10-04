@@ -11,7 +11,7 @@ const CollectionPage = ({collections}) => {
 
     const {title, items} = collections
   
-
+    console.log(collections)
     return(
         <div className="Collection-page">
            <h2 className="title">{title}</h2>
@@ -23,6 +23,7 @@ const CollectionPage = ({collections}) => {
 
         </div>
     )
+   
 }
 
 const mapStateToProps=(state, ownProps)=>({

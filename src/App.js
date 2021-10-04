@@ -3,7 +3,7 @@ import { Route, Switch , Redirect} from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import './App.css';
 import Header from './Components/Header/Header';
-import Homepage from './pages/HomePage';
+
 import Shop from './pages/Shop/Shop';
 import SignInAndSignUp from './pages/Sign-in-and-Sign-up/Sign-in-and-Sign-up';
 import { auth, createUserProfileDocument } from './FireBase/Firebase-util';
@@ -13,6 +13,7 @@ import {setCurrentUser} from './redux/User/UserAction'
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/User/UserSelector';
 import CheckOut from './pages/CheckOut/CheckOut';
+import Homepage from './pages/Homepage/HomePage';
 
 
 
