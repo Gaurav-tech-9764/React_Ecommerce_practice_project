@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 import { persistStore } from "redux-persist";
 import rootReducer from "./RootReducer";
+import createSagaMiddleware from "@redux-saga/core";
 
 
-const middleWare = [];
+const middleWare = [thunk];
 
 if(process.env.NODE_ENV == 'development'){
     middleWare.push(logger);

@@ -20,3 +20,14 @@ export const SelectCollection = CollectionURLParam => createSelector(
     [SelectShopCollection],
     ShopData => ShopData ? ShopData[CollectionURLParam] : []
 )
+
+
+export const SelectIsCollectionFetching = createSelector(
+    [ShopCollection],
+    Shop=> Shop.isFetching
+)
+
+export const SelectIsCollectionLoaded = createSelector(
+    [ShopCollection],
+    Shop => !!Shop.ShopData
+)

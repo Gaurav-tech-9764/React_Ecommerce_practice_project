@@ -8,10 +8,10 @@ import { SelectCollection } from "../../redux/Shop-redux/ShopSelector";
 
 const CollectionPage = ({collections}) => {
   
-
+console.log(collections)
     const {title, items} = collections
   
-    console.log(collections)
+
     return(
         <div className="Collection-page">
            <h2 className="title">{title}</h2>
