@@ -35,6 +35,11 @@ switch(action.type){
                      ...state,
                  CartItems: RemoveItemsFromCart(state.CartItems, action.payload)
                     }
+    case CartActionTypes.CLEAR_CART:
+        return{
+            ...state,
+            CartItems:[]
+        }
         default:
             return state
 }

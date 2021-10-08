@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app';
-import { getAuth } from "firebase/auth";
+import { getAuth,onAuthStateChanged } from "firebase/auth";
 import 'firebase/firestore' 
 import 'firebase/compat/firestore';
 import { GoogleAuthProvider , signInWithPopup} from "firebase/auth";
@@ -85,17 +85,28 @@ const config = {
      
   }
 
+
+
+export const getCurrentUser= () => {
+  return new Promise((resolve, reject)=> {
+    const unsubcribe = onAuthStateChanged(auth,  userAuth=>{
+      unsubcribe();
+      resolve(userAuth)
+    },reject)
+  })
+}
+
   firebase.initializeApp(config);
 
   export const auth = getAuth();
   export const firestore = firebase.firestore();
 
-  const provider = new GoogleAuthProvider();
+  export const  GoogleProvider = new GoogleAuthProvider();
 
-  provider.setCustomParameters({prompt: 'select_account'})
+  GoogleProvider.setCustomParameters({prompt: 'select_account'})
 
   
-  export const signInWithGoogle = () => signInWithPopup(auth, provider)
+  export const signInWithGoogle = () => signInWithPopup(auth, GoogleProvider)
   .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);

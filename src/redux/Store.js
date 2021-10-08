@@ -5,14 +5,19 @@ import { persistStore } from "redux-persist";
 import rootReducer from "./RootReducer";
 import createSagaMiddleware from "@redux-saga/core";
 
+import RootSagas from "./RootSagas";
 
-const middleWare = [thunk];
+const SagaMiddleware = createSagaMiddleware()
+
+const middleWare = [SagaMiddleware];
 
 if(process.env.NODE_ENV == 'development'){
     middleWare.push(logger);
 }
 
 export const store = createStore(rootReducer, applyMiddleware(...middleWare))
+
+SagaMiddleware.run(RootSagas)
 
 export const persistor = persistStore(store)
 
