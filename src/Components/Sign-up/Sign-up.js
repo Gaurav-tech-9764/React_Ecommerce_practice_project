@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useState } from "react";
 import FormInput from "../Form-Input/Form-Input";
 
 import CustomButton from "../custom-button/CustomButton";
@@ -8,26 +8,25 @@ import { connect } from "react-redux";
 import { SignUpStart } from "../../redux/User/UserAction";
 
 
-class SignUp extends Component{
-    constructor(){
-        super();
-
-            this.state = { 
-                displayName:'',
-                email:'',
-                password:'',
-                ConfirmPassword:''
-            }
+const SignUp = ({signUpStart}) => {
+   
+const [UserDetails, setUserDetails] = useState( { 
+    displayName:'',
+    email:'',
+    password:'',
+    ConfirmPassword:''
+})
         
-    }
+        
+   
+const {displayName,email,password,ConfirmPassword} = UserDetails 
 
-    handelSubmit = async event =>{
+  const  handelSubmit = async event =>{
 
         event.preventDefault();
-        const {signUpStart}= this.props
-        const {displayName,email,password,ConfirmPassword} = this.state;
+    
 
-        if(password != ConfirmPassword){
+        if(password !== ConfirmPassword){
             alert("Password Donn`t Match");
             return;
         }
@@ -36,23 +35,23 @@ class SignUp extends Component{
          
 };
 
-    handelchange = event => {
+  const  handelchange = event => {
         const {name, value} = event.target;
-        this.setState({[name] : value})
+        setUserDetails({...UserDetails,[name] : value})
     };
-    render(){
-        const {displayName,email,password,ConfirmPassword} = this.state;
+   
+       
         return(
 
             <div className="sign-in">
                 <h2 className="title">I do Not have a account</h2>
                 <span>Sign up with your email and password</span>
-                <form className="sign-up-form" onSubmit={this.handelSubmit}>
+                <form className="sign-up-form" onSubmit={handelSubmit}>
                 <FormInput
                     type="text"
                     name="displayName"
                     value={displayName} 
-                    onChange={this.handelchange}
+                    onChange={handelchange}
                     label="Display Name"
                     required
                 />
@@ -61,7 +60,7 @@ class SignUp extends Component{
                     type="email" 
                     name="email" 
                     value={email} 
-                    onChange={this.handelchange}
+                    onChange={handelchange}
                     label="Email" 
                     required 
                 />
@@ -69,7 +68,7 @@ class SignUp extends Component{
                     type="password" 
                     name="password" 
                     value={password} 
-                    onChange={this.handelchange}
+                    onChange={handelchange}
                     label="Password" 
                     required 
 
@@ -78,7 +77,7 @@ class SignUp extends Component{
                     type="password" 
                     name="ConfirmPassword" 
                     value={ConfirmPassword} 
-                    onChange={this.handelchange}
+                    onChange={handelchange}
                     label="Confirm Password" 
                     required 
 
@@ -91,7 +90,6 @@ class SignUp extends Component{
         )
 
 
-    }
 
 
 }

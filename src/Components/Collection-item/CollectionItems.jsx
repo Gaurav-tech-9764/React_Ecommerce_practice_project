@@ -1,42 +1,45 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { createStructuredSelector } from "reselect";
-import { AddItem } from "../../redux/Cart/CartAction";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/User/UserSelector";
-import CustomButton from "../custom-button/CustomButton";
-import "./CollectionItems.Styles.scss"
+import { AddItem } from "../../redux/Cart/CartAction";
+import { useHistory } from "react-router";
+import { AddButton, BackgroundImage, CollectionFooterContainer, CollectionItemStyles, NameContainer, PriceContainer } from "./CollectionItem.Styles";
 
-const CollectionItems = ({item,currentUser, history,AddItem}) =>{
+const CollectionItems = ({item}) =>{
+
+    const dispatch = useDispatch()
+    const currentUser = useSelector(selectCurrentUser)
+    const history = useHistory()
+
     const {name, price, imageUrl} = item
     return(
-    <div className="collection-item">
-    <div style={{backgroundImage:`url(${imageUrl})`}} className="image" />
+    <CollectionItemStyles>
+    <BackgroundImage style={{backgroundImage:`url(${imageUrl})`}} className="image" />
 
 
-    <div className="collection-footer">
-        <span className="name">{name}</span>
-        <span className="price">{price}</span>
-    </div>
+    <CollectionFooterContainer>
+        <NameContainer>{name}</NameContainer>
+        <PriceContainer>{price}</PriceContainer>
+    </CollectionFooterContainer>
     { currentUser ?
-        <CustomButton onClick={()=> AddItem(item)} inverted>Add To Cart</CustomButton>
+        <AddButton onClick={()=>dispatch(AddItem(item))} inverted>Add To Cart</AddButton>
         :
-        <CustomButton type="button" onClick={()=> history.push('/Signin')} loggedin >Login For Add To Cart</CustomButton>
+        <AddButton  onClick={()=> history.push('/Signin')} loggedin >Login For Add To Cart</AddButton>
     }
   
-</div>
+</CollectionItemStyles>
     )
 }
 
 
-const mapDispatchToProps = dispatch => ({
+// const mapDispatchToProps = dispatch => ({
 
-    AddItem: item => dispatch(AddItem(item))
-})
+//     AddItem: item => dispatch(AddItem(item))
+// })
 
-const mapStateToProps =  createStructuredSelector({
-    currentUser: selectCurrentUser,
+// const mapStateToProps =  createStructuredSelector({
+//     currentUser: selectCurrentUser,
     
-  })
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CollectionItems)) 
+//   })
+export default CollectionItems
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

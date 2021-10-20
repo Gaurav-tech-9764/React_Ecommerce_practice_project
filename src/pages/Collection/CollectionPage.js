@@ -1,33 +1,50 @@
 import React from "react";
 import './Collection.Styles.scss'
 import CollectionItems from "../../Components/Collection-item/CollectionItems";
-import { connect } from "react-redux";
-import { SelectDirectorySections } from "../../redux/Directory-redux/DirectorySelector";
+import {  useSelector } from "react-redux";
 import { SelectCollection } from "../../redux/Shop-redux/ShopSelector";
 
+import { useParams } from "react-router";
+import { CollectionContainer, CollectionTitle, CollectionItemsContainer} from "./CollectionPage.Style";
 
-const CollectionPage = ({collections}) => {
-  
-console.log(collections)
+
+const CollectionPage = () => {
+    //cleanup function bye useeffect as componentWillUnMount()
+// useEffect(()=>{
+//     console.log("I am mounting")
+//     const unsubcribeFromCollections = firestore.collection('collections').onSnapshot(snapshot=>console.log(snapshot))
+
+//     return() =>{
+
+//         console.log("I am Unmounting")
+//         unsubcribeFromCollections()
+
+//     }
+// },)
+const {collectionId} = useParams()
+const collections = useSelector(SelectCollection(collectionId))
+
     const {title, items} = collections
   
 
     return(
-        <div className="Collection-page">
-           <h2 className="title">{title}</h2>
-           <div className="items">
-               {
+       <CollectionContainer>
+       <CollectionTitle>{title}</CollectionTitle>
+           <CollectionItemsContainer>
+           {
                    items.map(item=> <CollectionItems key={item.id} item={item}/>)
                }
-           </div>
+            </CollectionItemsContainer>
+       </CollectionContainer>
+           
 
-        </div>
+        
     )
    
 }
 
-const mapStateToProps=(state, ownProps)=>({
-    collections: SelectCollection(ownProps.match.params.collectionId)(state)
-})
+// const mapStateToProps=(state, ownProps)=>({
+//     collections: SelectCollection(ownProps.match.params.collectionId)(state)
+// })
 
-export default connect(mapStateToProps) (CollectionPage)
+export default CollectionPage

@@ -1,17 +1,24 @@
-import react from "react"
-import { withRouter } from "react-router-dom"
+import React from "react"
+import { useHistory} from "react-router-dom"
 import "./menu-item.styles.scss"
+import { useRouteMatch } from "react-router"
 
-const MenuItems = ({title , imageUrl, size , history, match, linkUrl}) => (
+const MenuItems = ({title , imageUrl, size , linkUrl}) =>{ 
+    const {url} = useRouteMatch()
+    const history = useHistory()
+    
+  
+    return(
 
-    <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
-    <div  style={{backgroundImage:`url(${imageUrl})`}} className="background"/>
-     <div className="content">
-        <h1 className="title">{title.toUpperCase()}</h1>
-        <span className="subtitle">Shop Now</span>
-    </div>
 
-    </div>
-)
+<div className={`${size} menu-item`} onClick={() => history.push(`${url}${linkUrl}`)}>
+<div  style={{backgroundImage:`url(${imageUrl})`}} className="background"/>
+    <div className="content">
+    <h1 className="title">{title.toUpperCase()}</h1>
+    <span className="subtitle">Shop Now</span>
+</div>
 
-export default withRouter(MenuItems)
+</div>
+)}
+
+export default MenuItems

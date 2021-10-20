@@ -1,4 +1,4 @@
-import react, { Component } from "react";
+import React, { useState } from "react";
 import CustomeButton from "../custom-button/CustomButton";
 import FormInput from "../Form-Input/Form-Input";
 import "./SignIn.Styles.scss";
@@ -7,46 +7,34 @@ import { EmailSignInStart, GoogleSignInStart} from "../../redux/User/UserAction"
 
 
 
-class SignIn extends Component {
- 
-    constructor(props){
+const SignIn = ({EmailSignInStart, googleSignInToStart})=>{
+     const [userCredentials, setuserCredentials] =useState({email:"", password:""}) 
+     
+    
+     const {email, password} = userCredentials;
 
-        super(props)
-
-        this.state={
-
-            email:"", 
-            password:""
-        }
-
-    }
-
-    handelSubmit = async event =>{
+     const handelSubmit = async event =>{
      
         event.preventDefault();
-        const {EmailSignInStart} = this.props
-        const {email, password} = this.state;
+  
 
         EmailSignInStart(email, password)
        
     }
-    handelChange = (event) => {
+    const  handelChange = (event) => {
         const {value, name} = event.target;
 
-        this.setState({[name]:value});
+       setuserCredentials({...userCredentials, [name]:value});
     }
-
-    render(){
-        const {googleSignInToStart} = this.props
         return(
 
             <div className="sign-in">
                 <h2>I already have an account</h2>
                 <span>Sign in with your email and password</span>
-                <form onSubmit={this.handelSubmit}>
-                    <FormInput name="email" label="email" type="email" handelChange={this.handelChange} value={this.state.email} required/>
+                <form onSubmit={handelSubmit}>
+                    <FormInput name="email" label="email" type="email" handelChange={handelChange} value={email} required/>
                    
-                    <FormInput name="password" label="password" type="password" handelChange={this.handelChange} value={this.state.password} required/>
+                    <FormInput name="password" label="password" type="password" handelChange={handelChange} value={password} required/>
                 
                     <div className="button">
 
@@ -62,7 +50,7 @@ class SignIn extends Component {
         )
 
 
-    }
+    
 }
 
 const mapDispatchToProps = dispatch => ({

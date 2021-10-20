@@ -4,46 +4,48 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Shop from './pages/Shop/Shop';
 import SignInAndSignUp from './pages/Sign-in-and-Sign-up/Sign-in-and-Sign-up';
-import { auth, createUserProfileDocument } from './FireBase/Firebase-util';
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { createContext, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {CheckUserSession} from './redux/User/UserAction'
-import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/User/UserSelector';
 import CheckOut from './pages/CheckOut/CheckOut';
 import Homepage from './pages/Homepage/HomePage';
 import ReduxSagas from './Components/Testing-Folder/ReduxSagasTestFile';
 import ReactHooks from './Components/Testing-Folder/Hooks/ReactHooks';
+import Hooks from './Components/Testing-Folder/Hooks/Hooks';
+import ComA from './Components/Testing-Folder/Context/ComA';
+import SHOP_DATA from './redux/Shop-redux/ShopData'
 
 
+////For Context texting//
+export const FirstName = createContext(SHOP_DATA)  
+export const LastName = createContext()  ///createContext
+const   App = () => {
 
-class  App extends Component {
+  const currentUser = useSelector(selectCurrentUser)
+  const dispatch = useDispatch()
 
+      useEffect(()=>{
+        dispatch(CheckUserSession())
+      },[dispatch])
 
-  unsubscribeFromAuth = null;
-
-  componentDidMount(){
-
-const {checkUserSession} = this.props
-checkUserSession()
-  }
-
-  componentWillUnmount(){
-
-    this.unsubscribeFromAuth();
-  }
-
-  render(){
     return (
       <div>
       <Header/>
       <Switch>
       <Route exact path="/" component={Homepage}/>
         <Route  path='/Shop' component={Shop}/>
-        <Route  exact path="/Signin" render={() => this.props.currentUser ? <Redirect to="/"/> : <SignInAndSignUp/>}/>
+        <Route  exact path="/Signin" render={() => currentUser ? <Redirect to="/"/> : <SignInAndSignUp/>}/>
         <Route exact path="/CheckOut" component= {CheckOut} />
         <Route exact path="/SagaTest" component= {ReduxSagas} />
         <Route exact path="/HookTest" component= {ReactHooks} />
+        <Route exact path="/UseTest" component= {Hooks} />
+        {/* <FirstName.Provider>  
+        <LastName.Provider value = {"Nakhale"}> */}
+        <Route exact path="/ContextTest" component= {ComA} />
+        {/* </LastName.Provider> */}
+        {/* </FirstName.Provider> */}
+        
       </Switch>
       
       </div>
@@ -53,20 +55,17 @@ checkUserSession()
   //     </div>
     );
 
-  }
+  
  
 }
 
-const mapStateToProps =  createStructuredSelector({
-  currentUser: selectCurrentUser,       //Specific Selector 
+// const mapStateToProps =  createStructuredSelector({
+//   currentUser: selectCurrentUser,       //Specific Selector 
   
-}) 
+// }) 
 
-const mapDispatchToProps = dispatch=> ({
-  checkUserSession:()=>dispatch(CheckUserSession())
-})
+// const mapDispatchToProps = dispatch=> ({
+//   checkUserSession:()=>dispatch(CheckUserSession())
+// })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
