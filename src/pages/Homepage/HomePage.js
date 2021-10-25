@@ -6,7 +6,7 @@ import HomePageStyles from "./HomePage.styles";
 
 
 const Homepage = (props) => {
-   
+ 
     return(
         <HomePageStyles>
      
