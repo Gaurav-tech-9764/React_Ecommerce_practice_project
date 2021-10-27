@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/css/main.866bb77e.chunk.css",
+    "main.js": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/main.c36fbc9e.chunk.js",
+    "main.js.map": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/main.c36fbc9e.chunk.js.map",
+    "runtime-main.js": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/runtime-main.f473701d.js",
+    "runtime-main.js.map": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/runtime-main.f473701d.js.map",
+    "static/js/2.c4d73ebf.chunk.js": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/2.c4d73ebf.chunk.js",
+    "static/js/2.c4d73ebf.chunk.js.map": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/2.c4d73ebf.chunk.js.map",
+    "static/js/3.eed6b0bf.chunk.js": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/3.eed6b0bf.chunk.js",
+    "static/js/3.eed6b0bf.chunk.js.map": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/3.eed6b0bf.chunk.js.map",
+    "index.html": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/index.html",
+    "static/css/main.866bb77e.chunk.css.map": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/css/main.866bb77e.chunk.css.map",
+    "static/js/2.c4d73ebf.chunk.js.LICENSE.txt": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/js/2.c4d73ebf.chunk.js.LICENSE.txt",
+    "static/media/crown.3a4e2b15.svg": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/media/crown.3a4e2b15.svg",
+    "static/media/shopping-bag.a688874f.svg": "/Gaurav-tech-9764/React_Ecommerce_practice_project.git/static/media/shopping-bag.a688874f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f473701d.js",
+    "static/js/2.c4d73ebf.chunk.js",
+    "static/css/main.866bb77e.chunk.css",
+    "static/js/main.c36fbc9e.chunk.js"
+  ]
+}
